@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "f8e13b15-9f3d-4a2f-8f56-b1e922c10b28",
+		"name": "Auth Microservice API",
+		"description": "Microservicio de autenticación para la aplicación de tareas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Autenticación",
+			"item": [
+				{
+					"name": "Registro de Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"usuario@ejemplo.com\",\n    \"password\": \"123456\",\n    \"name\": \"Usuario\",\n    \"lastName\": \"Ejemplo\",\n    \"type\": \"user\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "auth", "register"]
+						},
+						"description": "Crea un nuevo usuario en el sistema"
+					},
+					"response": [
+						{
+							"status": "201 Created",
+							"code": 201,
+							"body": {
+								"success": true,
+								"data": {
+									"user": {
+										"id": "user_id",
+										"email": "usuario@ejemplo.com",
+										"name": "Usuario",
+										"lastName": "Ejemplo",
+										"type": "user"
+									}
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"usuario@ejemplo.com\",\n    \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "auth", "login"]
+						},
+						"description": "Inicia sesión y obtiene un token JWT"
+					},
+					"response": [
+						{
+							"status": "200 OK",
+							"code": 200,
+							"body": {
+								"success": true,
+								"data": {
+									"token": "jwt_token",
+									"user": {
+										"id": "user_id",
+										"email": "usuario@ejemplo.com",
+										"name": "Usuario",
+										"type": "user",
+										"status": "active"
+									}
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Verificar Token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/verify",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "auth", "verify"]
+						},
+						"description": "Verifica si el token JWT es válido"
+					},
+					"response": [
+						{
+							"status": "200 OK",
+							"code": 200,
+							"body": {
+								"success": true,
+								"user": {
+									"id": "user_id",
+									"email": "usuario@ejemplo.com",
+									"type": "user"
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Solicitar Recuperación de Contraseña",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"usuario@ejemplo.com\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/forgot-password",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "auth", "forgot-password"]
+						},
+						"description": "Envía un correo con un token para restablecer la contraseña"
+					},
+					"response": [
+						{
+							"status": "200 OK",
+							"code": 200,
+							"body": {
+								"success": true,
+								"message": "Token enviado al email"
+							}
+						}
+					]
+				},
+				{
+					"name": "Restablecer Contraseña",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"reset_token\",\n    \"password\": \"nueva_contraseña\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/reset-password",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "auth", "reset-password"]
+						},
+						"description": "Restablece la contraseña usando el token recibido por correo"
+					},
+					"response": [
+						{
+							"status": "200 OK",
+							"code": 200,
+							"body": {
+								"success": true,
+								"message": "Contraseña actualizada correctamente"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gestión de Usuarios",
+			"item": [
+				{
+					"name": "Eliminar Usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "users", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "user_id",
+									"description": "ID del usuario a eliminar"
+								}
+							]
+						},
+						"description": "Elimina un usuario del sistema (requiere permisos de administrador)"
+					},
+					"response": [
+						{
+							"status": "200 OK",
+							"code": 200,
+							"body": {
+								"success": true,
+								"message": "Usuario eliminado correctamente"
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "your_jwt_token",
+			"type": "string"
+		}
+	]
+}

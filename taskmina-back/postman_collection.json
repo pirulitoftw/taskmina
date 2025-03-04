@@ -1,0 +1,352 @@
+{
+  "info": {
+    "name": "Task Management Microservice",
+    "description": "Colección de endpoints para el microservicio de gestión de tareas.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Crear una tarea",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Título de la tarea\",\n  \"description\": \"Descripción de la tarea\",\n  \"dueDate\": \"2025-05-15\",\n  \"priority\": \"high\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar una tarea",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Nuevo título de la tarea\",\n  \"description\": \"Nueva descripción de la tarea\",\n  \"completed\": true,\n  \"dueDate\": \"2025-05-20\",\n  \"priority\": \"medium\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            ":id"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar una tarea",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            ":id"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener todas las tareas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener una tarea específica",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            ":id"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Marcar una tarea como completada",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/:id/complete",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            ":id",
+            "complete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Marcar una tarea como no completada",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/:id/incomplete",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            ":id",
+            "incomplete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener tareas por prioridad",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/priority/:priority",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            "priority",
+            ":priority"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener tareas por fecha de vencimiento",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/due/:date",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            "due",
+            ":date"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener estadísticas generales",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/stats",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            "stats"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener tareas urgentes",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/urgent",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            "urgent"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener resumen por prioridad",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/priority-summary",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            "priority-summary"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener progreso semanal",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tasks/weekly-progress",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "tasks",
+            "weekly-progress"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

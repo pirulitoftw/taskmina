@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply bg-teal dark:bg-cyan-600 text-white hover:bg-teal-600 dark:hover:bg-cyan-500;
+  }
+}
