@@ -1,60 +1,80 @@
-Taskmina 📋✨
-Descripción del Proyecto
-Taskmina es una aplicación de gestión de tareas construida con una arquitectura de microservicios y frontend en React. El proyecto está diseñado para proporcionar una experiencia de administración de tareas eficiente y moderna.
-Estructura del Proyecto
-El repositorio está organizado en tres carpetas principales:
+# Taskmina 📋✨
 
-frontend/: Aplicación React
-microservicio-auth/: Microservicio de autenticación
-microservicio-tareas/: Microservicio de gestión de tareas
+## Descripción del Proyecto
+Taskmina es una aplicación de gestión de tareas diseñada con una arquitectura de microservicios y un frontend moderno en React. Su objetivo es proporcionar una experiencia eficiente y ágil para la administración de tareas, integrando autenticación segura y un backend escalable.
 
-Requisitos Previos
+## Estructura del Proyecto
+El repositorio está organizado en las siguientes carpetas principales:
 
-Node.js (v18 o superior)
-npm (v9 o superior)
+```
+/taskmina
+├── taskmina/             # Aplicación React
+├── auth/   # Microservicio de autenticación
+└── taskmina-back/ # Microservicio de gestión de tareas
+```
 
-Instalación y Configuración
-Clonar el Repositorio
-bashCopygit clone https://github.com/tu-usuario/taskmina.git
+## Requisitos Previos
+Asegúrate de tener instalados los siguientes requisitos antes de iniciar el proyecto:
+
+- **Node.js** (v18 o superior)
+- **npm** (v9 o superior)
+- **nodemon** 
+
+## Instalación y Configuración
+
+### 1. Clonar el Repositorio
+```bash
+git clone https://github.com/tu-usuario/taskmina.git
+cd taskmina
+```
+
+### 2. Instalación de Dependencias
+#### taskmina
+```bash
 cd taskmina
 npm install
 npm run dev
-npm install nodemon -g
+```
+Accede a: [http://localhost:3000](http://localhost:3000)
 
-# Microservicio de Autenticación
+#### Microservicio de Autenticación
+```bash
 cd ../auth
 npm install
 npm run dev
+```
+Accede a: [http://localhost:5173](http://localhost:5173)
 
-# Microservicio de Tareas
+#### Microservicio de Gestión de Tareas
+```bash
 cd ../taskmina-back
 npm install
 npm run dev
+```
+Accede a: [http://localhost:8090](http://localhost:8090)
 
-Frontend: http://localhost:3000
-Microservicio de Autenticación: http://localhost:5173/
-Microservicio de Tareas: http://localhost:8090
+## Tecnologías Utilizadas
 
-Tecnologías Utilizadas
+### **Frontend**
+- React
+- React Router
+- Axios
 
-Frontend:
+### **Backend**
+- Node.js
+- Express.js
+- MongoDB
 
-React
-React Router
-Axios
-
-
-Backend:
-
-Node.js
-Express.js
-MongoDB
+### **Autenticación**
+- JWT (JSON Web Tokens)
+- bcrypt
 
 
-Autenticación:
+## Licencia
+Este proyecto está bajo la licencia [MIT](LICENSE).
 
-JWT (JSON Web Tokens)
-bcrypt
+---
+**Hecho con ❤️ por Josibell Guerrero**
 
 
 
