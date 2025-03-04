@@ -37,8 +37,7 @@ module.exports = {
                 { 
                     id: user._id,
                     email: user.email,
-                    type: user.type,
-                    name: user.name, 
+                    type: user.type 
                 }, 
                 process.env.SECRET,
                 { expiresIn: process.env.EXP || '24h' }
@@ -58,6 +57,7 @@ module.exports = {
                 }
             });
         } catch (error) {
+            console.error('Error en login:', error);
             res.status(500).json({
                 success: false,
                 error: 'Error al procesar la solicitud'
@@ -68,6 +68,7 @@ module.exports = {
     async tokenValidation(req, res, next) {
         try {
             const token = req.headers.authorization?.split(' ')[1] || req.headers.token;
+
             if (!token) {
                 return res.status(401).json({
                     success: false,
@@ -95,7 +96,6 @@ module.exports = {
                 req.user = {
                     id: decoded.id,
                     email: decoded.email,
-                    name: decoded.name,
                     type: decoded.type
                 };
                 next();
